@@ -1,12 +1,10 @@
 ## Kanister Demo 
-
 ## How to Install Kanister 
 
 add kanister helm repository 
 ```
 helm repo add kanister https://charts.kanister.io/
 ```
-
 create kanister namespace
 ```
 kubectl create namespace kanister 
@@ -88,6 +86,7 @@ kubectl exec -ti $(kubectl get pods -n mysql-test --selector=app.kubernetes.io/i
  ```
  CREATE DATABASE test;
  USE test;
+ CREATE TABLE pets (name VARCHAR(20), owner VARCHAR(20), species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
  INSERT INTO pets VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
  SELECT * FROM pets;
  exit 
@@ -96,11 +95,11 @@ kubectl exec -ti $(kubectl get pods -n mysql-test --selector=app.kubernetes.io/i
 
 ## Creating an Actionset 
 
-We have no data in our database at this point but this is to show you what it will look like in your AWS Location Profile. 
+We have data in our database at this point but this is to show you what it will look like in your AWS Location Profile. 
 
 first we need our profile name 
 ```
-kubectl get profile -n mysql
+kubectl get profile -n mysql-test
 ```
 To then create our actionset (backupjob) we need to take the profile name and add to the profile in the following command. 
 
